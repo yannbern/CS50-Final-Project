@@ -1,0 +1,102 @@
+<form
+  class="listing-form {% if is_listing %}{% else %}hidden{% endif %}"
+  action="/add-listing"
+  method="POST"
+  enctype="multipart/form-data">
+
+  
+    <div class="listing-form-container">
+      {{ form_listing.hidden_tag() }}
+      <ion-icon
+        class="modal-close-icon md hydrated"
+        name="close-outline"
+        role="img">
+      </ion-icon>
+      <div class="listing-form-left">
+        <ion-icon name="close" class="photo-input-remove hidden"></ion-icon>
+        <label for="photo" class="custom-file-input">
+          <ion-icon class="photo-input-logo" name="image"></ion-icon>
+          <p class="photo-input-text">Click here to add a photo</p>
+          {{ form_listing.photo(class="photo-input", style="opacity: 0", accept="image/jpeg, image/jpg, image/png") }}
+        </label>
+      </div>
+
+      <div class="listing-form-right">
+        <div class="label-container">
+          <label class="list-labels" for="title">Title</label>
+        </div>
+
+        {{ form_listing.title(class="listing-form-input", placeholder="Your listing title...", autofocus=true ) }}
+
+        {% for error in form_listing.title.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+
+        <div class="label-container">
+          <label class="list-labels" for="category">Category</label>
+        </div>
+
+        {{ form_listing.category(class="listing-form-input",
+        placeholder="Choose category") }}
+
+        {% for error in form_listing.category.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+
+        <div class="label-container">
+          <label class="list-labels" for="title">Condition</label>
+        </div>
+
+        {{ form_listing.condition(class="listing-form-input", autofocus=true) }}
+
+        {% for error in form_listing.condition.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+
+        <div class="label-container">
+          <label class="list-labels" for="price">Price</label>
+        </div>
+
+        {{ form_listing.price(class="listing-form-input", placeholder="Your listing price...") }}
+
+        {% for error in form_listing.price.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+
+        <div class="label-container">
+          <label class="list-labels" for="email">Description</label>
+        </div>
+
+        {{ form_listing.description(class="listing-form-input", placeholder="Your listing description...") }}
+        
+        {% for error in form_listing.description.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+
+        {{ form_listing.submit(class="list-form-button", value="Post listing") }}
+
+        {% for error in form_listing.photo.errors %}
+          <div class="modal-error">
+            <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+            <span class="error">{{ error }} </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+</form>

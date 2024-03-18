@@ -1,0 +1,69 @@
+<form
+  class="sign-up-form {% if is_signup %}{% else %}hidden{% endif %}"
+  action="/signup"
+  method="POST"
+>
+  <div class="modal-container">
+    {{ form_signup.hidden_tag() }}
+    <div class="modal-close">
+      <ion-icon class="modal-close-icon" name="close-outline"></ion-icon>
+    </div>
+    <div class="modal-title">
+      <img src="{{ url_for('static', filename='img/sellr-logo.png') }}" />
+    </div>
+    <label class="modal-labels" for="name">Username</label>
+    {{ form_signup.name(class="modal-input", placeholder="Username...", autofocus=true) }}
+    
+    {% for error in form_signup.name.errors %}
+    <div class="modal-error">
+      <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+      <span class="error">{{ error }} </span>
+    </div>
+    {% endfor %}
+
+    <label class="modal-labels" for="email">Email</label>
+    {{ form_signup.email(class="modal-input", pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$", placeholder="Email...") }}
+    
+    {% for error in form_signup.email.errors %}
+      <div class="modal-error">
+        <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+        <span class="error">{{ error }} </span>
+      </div>
+    {% endfor %}
+    <div class="modal-error hidden">
+      <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+      <span class="error">Invalid email address.</span>
+    </div>
+
+    <label class="modal-labels" for="password">Password</label>
+    {{ form_signup.password(class="modal-input", pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", placeholder="Password...") }}
+    
+    {% for error in form_signup.password.errors %}
+      <div class="modal-error">
+        <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+        <span class="error">{{ error }} </span>
+      </div>
+    {% endfor %}
+    <div class="modal-error hidden">
+      <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+      <span class="error">Password not matching criteria.</span>
+    </div>
+
+    <p class="modal-forgot">
+      Must include a <span class="forgot">number</span> and special symbol
+      <span class="forgot">(#!?@)</span>
+    </p>
+
+    {{ form_signup.submit(class="btn--modal", value="Sign Up") }}
+    
+    <p class="modal-forgot">
+      Already registered? <span class="forgot">Sign In</span>
+    </p>
+    <div class="modal-break"></div>
+    <p class="modal-forgot">
+      By continuing, you are agreeing to our
+      <span class="forgot">Terms & Conditions</span> and
+      <span class="forgot">Privacy Policy</span>.
+    </p>
+  </div>
+</form>

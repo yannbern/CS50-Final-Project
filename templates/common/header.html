@@ -1,0 +1,158 @@
+<header class="header">
+  <div class="logo-nav">
+    <a href="/"
+      ><img
+        class="logo-img"
+        src="{{ url_for('static', filename='img/sellr-logo.png') }}"
+        alt="Sellr logo"
+    /></a>
+  </div>
+
+  <nav class="main-nav">
+    <div class="main-nav-list">
+      <a
+        href="/"
+        class="main-nav-container {% if current_route == '/' %}selected{% endif %}">
+        <ion-icon class="main-nav-icon" name="sparkles"></ion-icon>
+        <span class="main-nav-link">For you</span>
+      </a>
+      <div class="view-break"></div>
+      <div class="main-nav-scroll">
+        <div class="main-nav-icon--scroll">
+          <ion-icon
+            class="main-nav-icon scroll"
+            name="chevron-forward"></ion-icon>
+        </div>
+        <a
+          href="/category/cars"
+          class="main-nav-container {% if current_route == '/category/cars' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="car-sport"></ion-icon>
+          <span class="main-nav-link">Cars</span>
+        </a>
+        <a
+          href="/category/furniture"
+          class="main-nav-container {% if current_route == '/category/furniture' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="home"></ion-icon>
+          <span class="main-nav-link">Furniture</span>
+        </a>
+        <a
+          href="/category/electronics"
+          class="main-nav-container {% if current_route == '/category/electronics' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="game-controller"> </ion-icon>
+          <span class="main-nav-link">Electronics</span>
+        </a>
+        <a
+          href="/category/clothing"
+          class="main-nav-container {% if current_route == '/category/clothing' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="shirt"> </ion-icon>
+          <span class="main-nav-link">Clothes</span>
+        </a>
+        <a
+          href="/category/homegarden"
+          class="main-nav-container {% if current_route == '/category/homegarden' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="leaf"> </ion-icon>
+          <span class="main-nav-link">Home & Garden</span>
+        </a>
+        <a
+          href="/category/booksmedia"
+          class="main-nav-container {% if current_route == '/category/booksmedia' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="book"> </ion-icon>
+          <span class="main-nav-link">Books & Media</span>
+        </a>
+        <a
+          href="/category/other"
+          class="main-nav-container {% if current_route == '/category/other' %}selected{% endif %}">
+          <ion-icon class="main-nav-icon" name="golf"> </ion-icon>
+          <span class="main-nav-link">Other</span>
+        </a>
+        <div class="main-nav-icon--scroll back hidden">
+          <ion-icon class="main-nav-icon scroll" name="chevron-back"></ion-icon>
+          <span class="main-nav-link"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="profile-nav">
+    <ul class="profile-nav-list">
+      {% if is_signed_in %}
+      <li>
+        <a
+          href="/user/{% if username %}{{ username }}{% endif %}/listings"
+          class="profile-nav-link btn--listings"
+          >My Listings</a
+        >
+      </li>
+      <li>
+        <a href="/signout" class="profile-nav-link btn--signout">Sign out</a>
+      </li>
+      {% else %}
+      <li><a href="#" class="profile-nav-link btn--login">Log in</a></li>
+      <li><a href="#" class="profile-nav-link btn--signup">Sign up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <nav class="mobile-nav">
+    <ul class="mobile-nav-list">
+      <a
+        href="/"
+        class="mobile-nav-container {% if current_route == '/' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="sparkles"></ion-icon>
+        <span href="#" class="mobile-nav-link">For you</span>
+      </a>
+      <a
+        href="/category/cars"
+        class="mobile-nav-container {% if current_route == '/category/cars' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="car-sport"></ion-icon>
+        <span href="#" class="mobile-nav-link">Cars</span>
+      </a>
+      <a
+        href="/category/furniture"
+        class="mobile-nav-container {% if current_route == '/category/furniture' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="home"></ion-icon>
+        <span href="#" class="mobile-nav-link">Furniture</span>
+      </a>
+      <a
+        href="/category/electronics"
+        class="mobile-nav-container {% if current_route == '/category/electronics' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="game-controller"></ion-icon>
+        <span href="#" class="mobile-nav-link">Electronics</span>
+      </a>
+      <a
+        href="/category/clothes"
+        class="mobile-nav-container {% if current_route == '/category/clothes' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="shirt"></ion-icon>
+        <span href="#" class="mobile-nav-link">Clothes</span>
+      </a>
+      <a
+        href="/category/homegarden"
+        class="mobile-nav-container {% if current_route == '/category/homegarden' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="leaf"></ion-icon>
+        <span href="#" class="mobile-nav-link">Home & Garden</span>
+      </a>
+      <a
+        href="/category/booksmedia"
+        class="mobile-nav-container {% if current_route == '/category/booksmedia' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="book"></ion-icon>
+        <span href="#" class="mobile-nav-link">Books & Media</span>
+      </a>
+      <a
+        href="/category/other"
+        class="mobile-nav-container {% if current_route == '/category/other' %}selected{% endif %}">
+        <ion-icon class="mobile-nav-icon" name="golf"></ion-icon>
+        <span href="#" class="mobile-nav-link">Other</span>
+      </a>
+    </ul>
+  </nav>
+
+  {% if is_signed_in %}
+  <a href="#" class="profile-nav-link btn--add">
+    <ion-icon name="add-circle"></ion-icon>
+  </a>
+  {% else %}
+  <a href="/?is_signin=True" class="profile-nav-link btn--add">
+    <ion-icon name="add-circle"></ion-icon>
+  </a>
+  {% endif %}
+</header>

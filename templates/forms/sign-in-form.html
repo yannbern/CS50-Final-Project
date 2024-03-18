@@ -1,0 +1,43 @@
+<form
+  class="sign-in-form {% if is_signin or request.args.get('is_signin') == 'True' %}{% else %}hidden{% endif %}"
+  action="/signin"
+  method="POST"
+>
+  <div class="modal-container">
+    {{ form_signin.csrf_token }}
+    <div class="modal-close">
+      <ion-icon class="modal-close-icon" name="close-outline"></ion-icon>
+    </div>
+    <div class="modal-title">
+      <img src="{{ url_for('static', filename='img/sellr-logo.png') }}" />
+    </div>
+    <label class="modal-labels" for="name">Email</label>
+    {{ form_signin.email(class="modal-input", pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$", placeholder="Enter email...", autofocus=True) }}
+    <div class="modal-error hidden">
+      <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+      <span class="error">Invalid email address.</span>
+    </div>
+
+    <label class="modal-labels" for="password">Password</label>
+    {{ form_signin.password(class="modal-input", placeholder="Enter password...") }} 
+    
+    {% for error in form_signin.password.errors %}
+      <div class="modal-error">
+        <ion-icon class="error-icon" name="alert-circle-outline"></ion-icon>
+        <span class="error">{{ error }} </span>
+      </div>
+    {% endfor %}
+
+    <p class="modal-forgot">Forgot your <span class="forgot">password</span>?</p>
+    <input class="btn--modal" type="submit" value="Sign In" />
+    <p class="modal-forgot">
+      New to Sellr? <span class="forgot">Sign up</span>
+    </p>
+    <div class="modal-break"></div>
+    <p class="modal-forgot">
+      By continuing, you are agreeing to our
+      <span class="forgot">Terms & Conditions</span> and
+      <span class="forgot">Privacy Policy</span>.
+    </p>
+  </div>
+</form>

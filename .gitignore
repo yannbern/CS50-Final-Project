@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# Complied python files
+*.pyc
+
+# Environment variables
+.env
+
+# Prettier formatting file
+.prettierignore
+
+# Image uploads
+static/uploads/*
+
+# Old database
+database/sellr.db

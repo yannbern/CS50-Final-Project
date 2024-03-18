@@ -1,0 +1,33 @@
+<section class="section-listings">
+  {% if listings %}
+  <div class="listing-container">
+    {% for listing in listings %}
+    <div class="listing" data-listing-id="{{ listing['ItemID']}}">
+      <div class="listing-img-container">
+        <img
+          class="listing-img"
+          src="{{ url_for('static', filename='uploads/' + listing['ImageFilePath']) }}"
+          alt="" />
+        <div class="overlay">
+          <ion-icon
+            class="overlay-icon"
+            name="{% if listing['UserID'] == session['user_id'] %}cog-outline{% else %}search-outline{% endif %}"></ion-icon>
+          {% if listing['UserID'] == session['user_id'] %}
+          <ion-icon class="overlay-icon--right" name="trash"></ion-icon>
+          {% endif %}
+        </div>
+      </div>
+      <p class="listing-text">
+        {{ listing["Title"]}} -
+        <strong>£{{ format_currency(listing["Price"]) }}</strong>
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="listing-none">
+    <p>There's nothing here...</p>
+    <a href="/" class="btn--view">Go back</a>
+  </div>
+  {% endif %}
+</section>

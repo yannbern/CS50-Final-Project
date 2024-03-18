@@ -1,0 +1,5 @@
+<div
+  class="modal {% if is_signup or is_signin or is_listing or request.args.get('is_signin') == 'True' %}{% else %}hidden{% endif %}">
+  {% include 'forms/sign-in-form.html'%} {% include 'forms/sign-up-form.html' %}
+  {% include 'forms/listing-form.html' %} {% include 'listing_view.html' %}
+</div>
